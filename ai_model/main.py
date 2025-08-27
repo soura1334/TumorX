@@ -20,14 +20,14 @@ app.add_middleware(
 MODEL_PATH = "model.h5" 
 model = load_model(MODEL_PATH)
 
-tumor_categories = ['pituitary', 'glioma', 'meningioma', 'notumor']
+tumor_categories = ['pituitary','meningioma','notumor','glioma']
 
 
 @app.get('/')
 def root():
     return {"message": "Working"}
 
-IMAGE_SIZE = (64, 64)  
+IMAGE_SIZE = (128, 128)  
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
