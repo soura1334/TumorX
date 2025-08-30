@@ -1,5 +1,6 @@
 package com.tumorx.server.service;
 
+import com.tumorx.server.model.AuthRes;
 import com.tumorx.server.model.User;
 import com.tumorx.server.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +24,24 @@ public class UserService {
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    public User register(User user){
+    public AuthRes register(User user){
         user.setPassword(encoder.encode(user.getPassword()));
-        return userRepo.save(user);
+        userRepo.save(user);
+        return new AuthRes(user.getName(), jwtService.generateToken(user.getEmail()) );
     }
 
-    public String verify(User user) {
+    public AuthRes verify(User user) {
         Authentication authentication =
-                authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+                authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 
         if(authentication.isAuthenticated()){
-            return jwtService.generateToken(user.getUsername());
+
+            User myUser = userRepo.findByEmail(user.getEmail());
+
+            return new AuthRes(myUser.getName(), jwtService.generateToken(user.getEmail()) );
         }
 
-        return "Failure";
+        return new AuthRes(null, null);
     }
 
 }
