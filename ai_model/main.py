@@ -20,7 +20,7 @@ app.add_middleware(
 MODEL_PATH = "model.h5" 
 model = load_model(MODEL_PATH)
 
-tumor_categories = ['pituitary','meningioma','notumor','glioma']
+tumor_categories = ['pituitary','notumor','meningioma','glioma']
 
 
 @app.get('/')
