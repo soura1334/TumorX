@@ -33,8 +33,8 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAEED1]">
-      <div className="bg-[#1E3A8A] text-[#FAEED1] flex p-5 gap-2 items-center shadow-xl">
+    <div className="min-h-screen bg-slate-50">
+      <div className="bg-[#1E3A8A] text-[#FAEED1] flex p-5 gap-2 items-center">
         <div className="flex gap-2" onClick={() => navigate("/")}>
           <p>Logo</p>
           <p>TumorX</p>
@@ -42,7 +42,7 @@ export default function Register() {
       </div>
       <div className="flex justify-center items-center h-[90vh]">
         <form
-          className="flex flex-col justify-evenly w-[30vw] bg-white  px-10 py-5 rounded-lg"
+          className="flex flex-col justify-evenly w-[30vw] shadow-2xl  px-10 py-5 rounded-lg"
           onSubmit={handleSubmit(onRegister)}
         >
           <p className="text-3xl text-center font-semibold text-blue-500">
