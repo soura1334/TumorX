@@ -7,6 +7,7 @@ import Register from "./components/Pages/Register";
 import Dashboard from "./components/Pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
+import { FormCtxProvider } from "./contexts/LogRegContext";
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<FormCtxProvider><Login /></FormCtxProvider>} />
+            <Route path="/register" element={<Register />} />
           <Route
             path="/dashboard"
             element={

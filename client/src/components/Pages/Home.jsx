@@ -1,43 +1,54 @@
+import Footer from "../Footer";
 import Navbar from "../Navbar";
-import { BookOpen, Play } from "lucide-react";
+import Hero from "../HomePage/Hero";
+import { BrainCog, Frown, Timer } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="bg-slate-50 min-h-screen">
       <Navbar />
       <Hero />
+      <Challenge />
+      <Footer />
     </div>
   );
 }
 
-function Hero() {
+function Challenge() {
   return (
-    <div className="flex justify-around items-center my-20 py-10">
-      <div className="text-5xl flex flex-col gap-5">
-        <p className="font-bold">Early Detection</p>
-        <p className="font-bold">Smarter Care</p>
-        <div className="font-bold">
-          <span>Powered by </span>
-          <span className="text-blue-500">AI</span>
-        </div>
-        <div className="text-lg my-5 text-gray-700">
-          <p>
-            TumorX helps patients and hospitals detect brain tumors quickly,
-          </p>
-          <p>securely, and efficiently with AI-powered MRI analysis.</p>
-        </div>
-        <div className="text-lg">
-          <div className="bg-blue-500 px-5 py-2 text-white rounded-3xl mr-5 inline-flex items-center gap-2">
-            <Play size={20} />
-            <button>Get Started</button>
-          </div>
-          <div className="bg-white border-2 border-blue-500 px-5 py-2 text-blue-600 rounded-3xl inline-flex items-center gap-2">
-            <BookOpen size={20} />
-            <button>Learn More</button>
-          </div>
-        </div>
+    <div className="flex flex-col items-center justify-center text-xl mb-5">
+      <p className="text-4xl font-semibold mb-5">
+        The Challenge with Traditional Diagnosis
+      </p>
+      <div className="flex gap-15 w-full justify-center mt-8 mb-5">
+        <ChallengeCard
+          Icon={<Timer size={50} color="blue" />}
+          title="Slow, Manual Process"
+          text="Delayed analysis & human effort"
+        />
+        <ChallengeCard
+          Icon={<BrainCog size={50} color="blue" />}
+          title="Prone to Human Error"
+          text="Inaccurate readings lead to misdiagnosis"
+        />
+        <ChallengeCard
+          Icon={<Frown size={50} color="blue" />}
+          title="Delays and Stress"
+          text="Anxiety for patients, worsened outcomes"
+        />
       </div>
-      <img src="/logo.png" className="h-100" alt="TumorX logo" />
+    </div>
+  );
+}
+
+function ChallengeCard({ Icon, title, text }) {
+  return (
+    <div className="p-10 w-[20vw] shadow-2xl rounded-lg flex flex-col text-center gap-5 items-center bg-white">
+      {Icon}
+      <div className="text-center mb-5">
+        <p className="text-blue-600 text-xl font-semibold mb-2">{title}</p>
+        <p className="text-gray-600 text-base">{text}</p>
+      </div>
     </div>
   );
 }
