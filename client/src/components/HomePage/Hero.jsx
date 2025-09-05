@@ -2,7 +2,7 @@ import { BookOpen, Play } from "lucide-react";
 
 export default function Hero() {
   return (
-    <div className="flex justify-around items-center my-20 py-10">
+    <div className="flex justify-around items-center min-h-screen py-10">
       <div className="text-5xl flex flex-col gap-5">
         <p className="font-bold">Early Detection</p>
         <p className="font-bold">Smarter Care</p>
