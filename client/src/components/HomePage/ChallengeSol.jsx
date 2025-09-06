@@ -6,7 +6,6 @@ export default function ChallengeSol() {
       <Challenge />
       <Transition />
       <Solution />
-      <button></button>
     </div>
   );
 }
@@ -14,7 +13,7 @@ export default function ChallengeSol() {
 function Challenge() {
   return (
     <div className="flex flex-col items-center justify-center text-xl mb-5">
-      <p className="text-4xl font-semibold mt-5 mb-5">
+      <p className="text-4xl text-gray-500 font-semibold mt-5 mb-5">
         The Challenge with Traditional Diagnosis
       </p>
       <div className="flex gap-15 w-full justify-center mt-8 mb-5">
@@ -53,7 +52,7 @@ function Card({ Icon, title, text }) {
 function Transition() {
   return (
     <div className="justify-self-center">
-      <p className="text-4xl font-semibold mb-5">
+      <p className="text-4xl text-blue-700 font-semibold mb-5">
         That's where AI-powered diagnosis changes everything
       </p>
     </div>

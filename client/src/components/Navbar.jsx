@@ -7,7 +7,7 @@ export default function Navbar() {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="bg-white/80 fixed w-full top-0 backdrop-blur-md flex py-5 justify-between items-center shadow-xl">
+    <div className="bg-white/70 fixed w-full top-0 backdrop-blur-md flex py-5 justify-between items-center shadow-xl">
       <div className="flex gap-4" onClick={() => navigate("/")}>
         <p className="text-blue-600 text-2xl ml-4 font-bold">TumorX</p>
       </div>

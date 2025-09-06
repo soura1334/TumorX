@@ -2,6 +2,7 @@ import Footer from "../Footer";
 import Navbar from "../Navbar";
 import Hero from "../HomePage/Hero";
 import ChallengeSol from "../HomePage/ChallengeSol"
+import HowItWorks from "../HomePage/HowItWorks";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ChallengeSol />
+      <HowItWorks />
       <Footer />
     </div>
   );
