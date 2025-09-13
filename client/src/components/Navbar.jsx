@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Navbar() {
@@ -7,27 +7,31 @@ export default function Navbar() {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="bg-[#1E3A8A] text-[#FAEED1] flex p-5 justify-around items-center shadow-xl">
+    <div className="bg-white/70 fixed w-full top-0 backdrop-blur-md flex py-5 justify-between items-center shadow-xl">
       <div className="flex gap-4" onClick={() => navigate("/")}>
-        <p>Logo</p>
-        <p>TumorX</p>
+        <p className="text-blue-600 text-2xl ml-4 font-bold">TumorX</p>
       </div>
-      <div className="flex justify-center gap-5 w-[50%]">
-        <p>Home</p>
-        <p>Contact</p>
+      <div className="flex justify-center gap-5 w-[50%] font-semibold">
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "text-blue-500" : "")}
+        >
+          Home
+        </NavLink>
+        <p>Features</p>
         <p>About</p>
-        <p>Product</p>
+        <p>Contact</p>
       </div>
       {isAuthenticated ? (
         <button
-          className="bg-[#FDF7E4] px-5 rounded-md py-1 hover:bg-[#ada99c] text-[#1E3A8A]"
+          className="bg-blue-500 px-8 rounded-md mr-4 text-white py-2 hover:bg-blue-600 shadow-lg shadow-blue-500/50"
           onClick={() => navigate("/dashboard")}
         >
           Go to Dashboard
         </button>
       ) : (
         <button
-          className="bg-[#FDF7E4] px-5 rounded-md py-1 hover:bg-[#ada99c] text-[#1E3A8A]"
+          className="bg-blue-500 px-8 rounded-md mr-4 text-white py-2 hover:bg-blue-600 shadow-lg shadow-blue-500/50 "
           onClick={() => navigate("/login")}
         >
           Login

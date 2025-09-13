@@ -1,84 +1,43 @@
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
+import { useState } from "react";
+import LogRegNavbar from "../LogRegNavbar";
+import LoginForm from "../LoginRegComps/LoginForm";
 
 export default function Login() {
-  const navigate = useNavigate();
+  const [currTab, setCurrTab] = useState("user");
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors, isSubmitting },
-  } = useForm();
+  function handleSetTab(newTab) {
+    if (newTab == currTab) return;
 
-  const { setIsAuthenticated } = useAuth();
-
-  async function onLogin(data) {
-    const res = await fetch("http://localhost:8080/login", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const apiRes = await res.json();
-    localStorage.setItem("tumorx", JSON.stringify(apiRes));
-    setIsAuthenticated(true);
-    navigate("/", {replace: true})
+    setCurrTab(newTab);
   }
 
   return (
-    <div className="min-h-screen bg-[#FAEED1]">
-      <div className="bg-[#1E3A8A] text-[#FAEED1] flex p-5 gap-2 items-center shadow-xl">
-        <div className="flex gap-2" onClick={()=> navigate("/")}>
-          <p>Logo</p>
-          <p>TumorX</p>
-        </div>
-      </div>
-      <div className="flex justify-center items-center h-[90vh]">
-        <form
-          className="flex flex-col justify-evenly w-[30vw] bg-white  px-10 py-5 rounded-lg"
-          onSubmit={handleSubmit(onLogin)}
-        >
-          <p className="text-3xl text-center font-semibold text-blue-500">
-            Login
+    <div className="min-h-screen bg-slate-50 relative">
+      <LogRegNavbar />
+      <div className="flex flex-col justify-center items-center h-[90vh] relative">
+        <div className="flex w-[30vw] justify-around text-xl border-b-2 pb-0 border-gray-200 p-4 z-5 bg-white">
+          <p
+            className={
+              currTab === "user"
+                ? "text-blue-500 underline-offset-5 underline"
+                : ""
+            }
+            onClick={() => setCurrTab("user")}
+          >
+            User Login
           </p>
-          <label htmlFor="email" className="mt-5 mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            className="border rounded-sm mb-5"
-            {...register("email", { required: true })}
-          ></input>
-          <label htmlFor="password" className="mb-2">
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            className="border rounded-sm mb-5"
-            {...register("password", { required: true })}
-          ></input>
-          <button className="bg-blue-500 text-white py-2 my-5 rounded-md">
-            Login
-          </button>
-          <div className="flex justify-center gap-2">
-            <span className="text-black">Don't have an account?</span>
-            <button
-              className="text-blue-500"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/register");
-              }}
-            >
-              Register
-            </button>
-          </div>
-        </form>
+          <p
+            className={
+              currTab === "hospital"
+                ? "text-blue-500 underline-offset-5 underline"
+                : ""
+            }
+            onClick={() => setCurrTab("hospital")}
+          >
+            Hospital Login
+          </p>
+        </div>
+        <LoginForm />
       </div>
     </div>
   );
