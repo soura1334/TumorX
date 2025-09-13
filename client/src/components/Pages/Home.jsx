@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import Hero from "../HomePage/Hero";
 import ChallengeSol from "../HomePage/ChallengeSol"
 import HowItWorks from "../HomePage/HowItWorks";
+import CTASec from "../HomePage/CTASec";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero />
       <ChallengeSol />
       <HowItWorks />
+      <CTASec />
       <Footer />
     </div>
   );
