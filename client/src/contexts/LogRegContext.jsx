@@ -8,6 +8,15 @@ function FormCtxProvider({ children }) {
   const navigate = useNavigate();
   const { setIsAuthenticated } = useAuth();
   const [errorMsg, setErrorMsg] = useState("");
+
+  const [currTab, setCurrTab] = useState("user");
+
+  function handleSetTab(newTab) {
+    if (newTab == currTab) return;
+
+    setCurrTab(newTab);
+  }
+
   async function onLogin(data) {
     try {
       const res = await fetch("http://localhost:8080/login", {
@@ -31,11 +40,32 @@ function FormCtxProvider({ children }) {
     }
   }
 
+  async function onRegister(data) {
+      const payload = { ...data, name: `${data.firstName}${data.lastName}` };
+      delete payload.firstName;
+      delete payload.lastName;
+      const res = await fetch("http://localhost:8080/register", {
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
+      const apidata = await res.json();
+      localStorage.setItem("tumorx", JSON.stringify(apidata));
+      setIsAuthenticated(true);
+      console.log(apidata);
+      navigate("/", { replace: true });
+    }
+
   return (
     <FormContext.Provider
       value={{
         onLogin,
-        errorMsg
+        errorMsg,
+        currTab,
+        handleSetTab,
+        onRegister
       }}
     >
       {children}
@@ -48,4 +78,4 @@ function useLogReg() {
   return context;
 }
 
-export {FormCtxProvider, useLogReg}
+export { FormCtxProvider, useLogReg };

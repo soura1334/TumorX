@@ -2,7 +2,7 @@ import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLogReg } from "../../contexts/LogRegContext";
-
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const {
@@ -12,8 +12,9 @@ export default function LoginForm() {
   } = useForm();
 
   const [viewPass, setViewPass] = useState(false);
+  const navigate = useNavigate();
 
-  const {onLogin, errorMsg} = useLogReg()
+  const { onLogin, errorMsg, currTab } = useLogReg();
 
   function handleViewPass() {
     setViewPass((prev) => !prev);
@@ -43,6 +44,27 @@ export default function LoginForm() {
       {errors.email && (
         <span className="text-red-500 text-sm mb-2">
           {errors.email.message}
+        </span>
+      )}
+
+      {currTab === "hospital" && (
+        <>
+          <label htmlFor="hname" className="mt-5 mb-2">
+            Hospital Name
+          </label>
+          <input
+            type="hname"
+            name="hname"
+            className="border rounded-sm mb-2 p-2"
+            {...register("hname", {
+              required: "Hospital Name is required"
+            })}
+          />
+        </>
+      )}
+      {errors.hname && (
+        <span className="text-red-500 text-sm mb-2">
+          {errors.hname.message}
         </span>
       )}
 

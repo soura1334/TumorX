@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
             <Route path="/login" element={<FormCtxProvider><Login /></FormCtxProvider>} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<FormCtxProvider><Register /></FormCtxProvider>} />
           <Route
             path="/dashboard"
             element={
